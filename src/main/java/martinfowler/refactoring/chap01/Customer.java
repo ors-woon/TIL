@@ -1,6 +1,5 @@
 package martinfowler.refactoring.chap01;
 
-import java.beans.beancontext.BeanContext;
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -47,7 +46,7 @@ public class Customer {
 					break;
 			}
 
-			frequentRenterPoints ++;
+			frequentRenterPoints++;
 			if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) {
 				frequentRenterPoints++;
 
@@ -61,8 +60,6 @@ public class Customer {
 		result += "누적 대여료 :" + String.valueOf(totalAmount) + "\n";
 		result += "적립 포인트 :" + String.valueOf(frequentRenterPoints);
 		return result;
-
-
 
 	}
 }
