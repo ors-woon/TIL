@@ -1,5 +1,7 @@
 package til.spring.tobi.chap01
 
+import chap01.Hello
+import chap01.StringPrinter
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.MatcherAssert.assertThat
@@ -19,7 +21,6 @@ class ContainerTest {
         // given
         val container = StaticApplicationContext()
         container.registerSingleton("hello", Hello::class.java)
-
 
         // when
         val hello = container.getBean("hello", Hello::class.java)
@@ -42,13 +43,13 @@ class ContainerTest {
         assertThat(hello, `is`(notNullValue()))
         assertEquals(hello.sayHello(), "Hello chulwoon")
         // 등록된 bean 갯수도 가져올 수 있다.
-        assertEquals(container.beanFactory.beanDefinitionCount , 1)
+        assertEquals(container.beanFactory.beanDefinitionCount, 1)
 
     }
 
     @Test
     @DisplayName("BenaDefiniton DI")
-    fun testDI(){
+    fun testDI() {
         // given
         val container = StaticApplicationContext()
         container.registerBeanDefinition("printer", RootBeanDefinition(StringPrinter::class.java))
@@ -64,5 +65,4 @@ class ContainerTest {
 
         assertEquals(container.getBean("printer").toString(), "Hello chulwoon")
     }
-
 }

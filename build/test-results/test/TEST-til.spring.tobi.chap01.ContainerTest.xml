@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="til.spring.tobi.chap01.ContainerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-12T06:29:34" hostname="jangcheol-uns-MacBook-Pro.local" time="0.161">
-  <properties/>
-  <testcase name="testDI()" classname="til.spring.tobi.chap01.ContainerTest" time="0.161"/>
-  <system-out><![CDATA[15:29:34.617 [Test worker] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'hello'
-15:29:34.689 [Test worker] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'printer'
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

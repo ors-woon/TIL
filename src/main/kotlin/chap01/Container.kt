@@ -1,4 +1,4 @@
-package til.spring.tobi.chap01
+package chap01
 
 class Hello {
     var name: String = ""
