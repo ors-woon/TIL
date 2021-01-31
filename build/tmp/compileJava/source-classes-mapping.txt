@@ -1,6 +1,0 @@
-martinfowler/refactoring/chap01/Customer.java
- martinfowler.refactoring.chap01.Customer
-martinfowler/refactoring/chap01/Rental.java
- martinfowler.refactoring.chap01.Rental
-martinfowler/refactoring/chap01/Movie.java
- martinfowler.refactoring.chap01.Movie

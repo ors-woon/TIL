@@ -1,2 +1,0 @@
-martifowler/refactoring/chap01/CustomerTest.java
- martifowler.refactoring.chap01.CustomerTest
