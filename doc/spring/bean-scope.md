@@ -125,22 +125,35 @@ class ProtoTypeBean
 
 prototype bean 을 직접 넘기는 방식이 아닌, Proxy 객체로 감아 넘기는 방식.
 
-// todo TC에서는 안먹는데, test phase 에 bean 을 생성 / 관리하는 방식이 다른거 같음. - 확인해봐
-
 ## request
 
+* 웹 요청과 생명주기가 동일한 bean scope.
+  * proxyMode 가 ScopedProxyMode.TARGET_CLASS 로 설정되어 있음.
+* 사용자 권한 인증 등의 기능들에서 사용가능함.
+  * thread local 을 대체할 수 있음
+  
+## session scope  
+
+* session 과 동일한 생명주기
+  * session 에 정보를 담아 접근할 경우, 계층이 깨지게 되므로 해당 bean 을 사용 할 수 있음
+* 당장 떠오르는 사용처는 없음
+* global session scope (포틀릿에서만 존재)
+
+## application scope 
+
+* servlet context 에 저장되는 bean
+* application context 와 생명주기가 유사하나, 드믈지만 다른 경우가 있다고함.
+* 역시 당장 떠오르는 사용처는 없음
 
 
-## session / global session
-## application
+
+---
+
+#### 고민거리
 
 
-
-
-
-
-
-
-
-
+- ScopedProxyMode의 target-class / interface 차이
+- ScopedProxyMode가 TC에서는 안먹는것처럼 보이는데, test phase 에 bean 을 생성 / 관리하는 방식이 다른거 같음 (확인 예정)
+- Bean Test 방식이 꽤 괜찮았던거 같음 (정리)
+- Configuration / Component 차이 정리 해야함.
 
