@@ -4,9 +4,9 @@
         xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="printer" class="chap01.StringPrinter"/>
+    <bean id="printer" class="com.chap01.StringPrinter"/>
 
-    <bean id="hello" class="chap01.Hello">
+    <bean id="hello" class="com.chap01.Hello">
         <property name="name" value="Parent"/>
         <property name="printer" ref="printer"/>
     </bean>
