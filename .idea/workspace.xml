@@ -5,38 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2ae12cd-96b9-4cf9-92fc-249284fa4eb6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/martinfowler/refactoring/chap01/Customer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/martinfowler/refactoring/chap01/Movie.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/martinfowler/refactoring/chap01/Rental.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/martinfowler/refactoring/chap01/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/boj/17608.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/chap01/BeanFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/BeanFactory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/chap01/ComponentKt.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/chap01/Container.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Container.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/chap01/NotConfigurationFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/NotConfigurationFactory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/chap01/Prototype.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Prototype.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/com/example/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/Application.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/java/martifowler/refactoring/chap01/CustomerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/kotlin/boj/_17608KtTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/kotlin/chap01/AnnotationScanningTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/AnnotationScanningTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/kotlin/chap01/ApplicationHierarchyTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/ApplicationHierarchyTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/kotlin/chap01/ContainerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/ContainerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/kotlin/chap01/NotConfigurationFactoryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/NotConfigurationFactoryTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/kotlin/chap01/PrototypeTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/PrototypeTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/resources/childContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/resources/childContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/resources/parentContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/resources/parentContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Prototype.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Prototype.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/spring/bean-scope.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/spring/bean-scope.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -308,7 +278,7 @@
       <updated>1612054690405</updated>
       <workItem from="1612054691792" duration="97000" />
       <workItem from="1612054793429" duration="5405000" />
-      <workItem from="1612077457993" duration="6120000" />
+      <workItem from="1612077457993" duration="6868000" />
     </task>
     <task id="LOCAL-00001" summary="make rule about TIL">
       <created>1612074914333</created>
@@ -317,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612074914333</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="be writing about Bean Scope.">
+      <created>1612151807291</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612151807291</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,6 +302,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="make rule about TIL" />
-    <option name="LAST_COMMIT_MESSAGE" value="make rule about TIL" />
+    <MESSAGE value="be writing about Bean Scope." />
+    <option name="LAST_COMMIT_MESSAGE" value="be writing about Bean Scope." />
   </component>
 </project>
