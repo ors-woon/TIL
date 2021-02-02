@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2ae12cd-96b9-4cf9-92fc-249284fa4eb6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/9/c980d2cccc89c73fefcf42c4dd1abdd6765c90f3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/5/d5d51bca12c65ef34d7afd2d8de14e6da6a1411c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/0/e0388c2476afadc0856a081d130f46b6f4d67be7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/e/ee4a61a8360a8fb09d9c8b23fea766d2612b8584" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/9/f93044698e92ae49847b2e0e96fe20dc14fa5dd7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Prototype.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Prototype.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/spring/bean-scope.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/spring/bean-scope.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Configuration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Configuration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/ConfigurationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/ConfigurationTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/spring/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/spring/configuration.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +69,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -118,6 +131,7 @@
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc/spring" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -125,12 +139,15 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/doc/spring" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.chap01" />
     </key>
@@ -142,17 +159,27 @@
       <recent name="com.chap01" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.code [build]">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Gradle.ConfigurationTest.configuration">
+    <configuration name="ConfigurationTest.configuration" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/code" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.chap01.ConfigurationTest.configuration&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="ProxyScopeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -217,27 +244,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="code [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/code" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="Application (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="todayILearned.main" />
       <extension name="coverage">
@@ -260,11 +266,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ConfigurationTest.configuration" />
         <item itemvalue="Gradle.code [build]" />
         <item itemvalue="Gradle.ProxyScopeTest" />
         <item itemvalue="Gradle.ProxyScopeTest.proxyType" />
         <item itemvalue="Spring Boot.Application (2)" />
-        <item itemvalue="Gradle.code [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -278,7 +284,10 @@
       <updated>1612054690405</updated>
       <workItem from="1612054691792" duration="97000" />
       <workItem from="1612054793429" duration="5405000" />
-      <workItem from="1612077457993" duration="6868000" />
+      <workItem from="1612077457993" duration="7087000" />
+      <workItem from="1612257224937" duration="1563000" />
+      <workItem from="1612267691059" duration="1286000" />
+      <workItem from="1612269342120" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="make rule about TIL">
       <created>1612074914333</created>
@@ -294,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612151807291</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="write about Bean Scope.">
+      <created>1612152723979</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1612152723979</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,6 +319,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="make rule about TIL" />
     <MESSAGE value="be writing about Bean Scope." />
-    <option name="LAST_COMMIT_MESSAGE" value="be writing about Bean Scope." />
+    <MESSAGE value="write about Bean Scope." />
+    <option name="LAST_COMMIT_MESSAGE" value="write about Bean Scope." />
   </component>
 </project>

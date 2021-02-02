@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 class HappyNewYear
 
 @Configuration
-open class BeanFactory {
+open class Config {
     @Bean
     open fun happyNewYear(): HappyNewYear = HappyNewYear()
 }
