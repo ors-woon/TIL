@@ -1,7 +1,6 @@
 package com.chap01
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
@@ -24,6 +23,6 @@ class ConfigurationTest {
         val beanWrapper = context.getBean(HappyNewYearWrapper::class.java) as HappyNewYearWrapper
 
         assertNotNull(bean)
-        assertEquals(bean, beanWrapper.happyNewYear)
+        assertNotEquals(bean, beanWrapper.happyNewYear)
     }
 }

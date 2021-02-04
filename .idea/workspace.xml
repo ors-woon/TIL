@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2ae12cd-96b9-4cf9-92fc-249284fa4eb6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Configuration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/main/kotlin/com/chap01/Configuration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/code/.gradle/6.5.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/ConfigurationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/test/kotlin/com/chap01/ConfigurationTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/spring/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/spring/configuration.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,7 +298,7 @@
       <workItem from="1612267691059" duration="1286000" />
       <workItem from="1612269342120" duration="230000" />
       <workItem from="1612315456153" duration="391000" />
-      <workItem from="1612428239690" duration="2475000" />
+      <workItem from="1612428239690" duration="2661000" />
     </task>
     <task id="LOCAL-00001" summary="make rule about TIL">
       <created>1612074914333</created>
@@ -327,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612269383136</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="write about Spring configuration">
+      <created>1612432422468</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1612432422468</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
