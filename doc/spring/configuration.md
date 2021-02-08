@@ -85,11 +85,24 @@ Component 와 Bean을 함께 사용한다면, 함수 호출로 인한 DI 는 피
 
 ### Configuration 과 final  
 
+* Spring 은 특정 annotation 이 선언된 클래스에 대해 runtime 시점에 proxy 객체를 만든다.
+  * cglib 를 사용하여 proxy 객체를 만든다
+  * cglib 은 jdk dynamic proxy 와 달리 일반 class 를 proxy 객체로 확장할 수 있다.
+    * jdk dynamic proxy 는 interface 만 가능.
+  
+* component 에 선언된 bean 들에 대해, `singleton 을 보장`하기 위해, proxy 객체를 이용하여 bean 들의 생명주기를 관리한다. 
+  * cglib 은 final 클래스(`상속불가`)에 사용할 수 없으므로, @component 에 사용 할 수 없다.
+  
 
+### cglib / dynamic proxy 
 
----
+* dynamic proxy 는 interface 를 통해서만 생성가능
+* cglib 은 클래스를 확장해서 사용 가능 
+  * spring 에 채택 된 이유는 dynamic proxy 보다 성능 / 에러 측면에서 이점이 있기때문.
+  
 
 todo
+- proxy 더 자세하게
 - BeanFactory / Application Context 차이점
  
  
