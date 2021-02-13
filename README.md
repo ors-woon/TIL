@@ -16,9 +16,14 @@
 
 ### Spring  
 
+[bean scope](/doc/spring/bean-scope.md)    
+[configuration](/doc/spring/configuration.md)
+
 ### Kotlin 
 
+### etc
 
+[change git author](/doc/etc/git-changeAuthor.md)
 
 ## Reference 
 

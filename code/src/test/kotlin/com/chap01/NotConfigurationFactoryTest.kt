@@ -40,7 +40,7 @@ internal class NotConfigurationFactoryTest {
     @Test
     @DisplayName("not configuration beanFactory ineject2")
     fun beanFactoryInject2() {
-        val ctx = AnnotationConfigApplicationContext(NotConfigurationFactory::class.java, NotConfigurationFactory::class.java)
+        val ctx = AnnotationConfigApplicationContext(NotConfigurationFactory::class.java, NotConfigurationFactory::class.java, HappyNewYear::class.java)
         val fun1: HappyNewYear = ctx.getBean("happyNewYear", HappyNewYear::class) as HappyNewYear
 
         assertNotNull(fun1)

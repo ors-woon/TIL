@@ -9,7 +9,7 @@ class HappyNewYear
 class HappyNewYearWrapper(val happyNewYear: HappyNewYear)
 
 @Configuration
-class Config {
+open class Config {
     @Bean
     open fun happyNewYear(): HappyNewYear = HappyNewYear()
 
