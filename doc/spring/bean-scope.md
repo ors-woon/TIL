@@ -151,9 +151,6 @@ prototype bean 을 직접 넘기는 방식이 아닌, Proxy 객체로 감아 넘
 
 #### 고민거리
 
-
-- ScopedProxyMode의 target-class / interface 차이
 - ScopedProxyMode가 TC에서는 안먹는것처럼 보이는데, test phase 에 bean 을 생성 / 관리하는 방식이 다른거 같음 (확인 예정)
 - Bean Test 방식이 꽤 괜찮았던거 같음 (정리)
-- Configuration / Component 차이 정리 해야함.
 

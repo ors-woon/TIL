@@ -92,17 +92,28 @@ Component 와 Bean을 함께 사용한다면, 함수 호출로 인한 DI 는 피
   
 * component 에 선언된 bean 들에 대해, `singleton 을 보장`하기 위해, proxy 객체를 이용하여 bean 들의 생명주기를 관리한다. 
   * cglib 은 final 클래스(`상속불가`)에 사용할 수 없으므로, @component 에 사용 할 수 없다.
-  
+
+### Proxy / Proxy Pattern
+
+* Target 클래스의 기능을 확장하는 object 를 의미한다.
+* Spring 에서는 AOP 가 대표적이며, Transaction 도 Proxy 로 동작한다.
+
 
 ### cglib / dynamic proxy 
 
 * dynamic proxy 는 interface 를 통해서만 생성가능
 * cglib 은 클래스를 확장해서 사용 가능 
   * spring 에 채택 된 이유는 dynamic proxy 보다 성능 / 에러 측면에서 이점이 있기때문.
+* prototype bean 을 선언하면서, `ScopedProxyMode` 속성을 사용할 수 있다.
   
+```
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE, 
+  proxyMode = ScopedProxyMode.TARGET_CLASS )
+```
+  * 이때 proxyMode의 값으로 `TARGET_CLASS` , `INTERFACES` 를 사용할 수 있는데, INTERFACE  가 `dynamic proxy`, TARGET_CLASS `cglib` 방식을 사용한다.
+
 
 todo
-- proxy 더 자세하게
 - BeanFactory / Application Context 차이점
  
  
