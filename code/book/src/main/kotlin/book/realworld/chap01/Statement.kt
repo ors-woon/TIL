@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter
 
 const val COLUMN_SIZE = 3
 const val DELIMITER = ","
-val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+val DATE_TIME_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
 data class Statement(val date: LocalDate, val price: Int, val shop: String) {
 

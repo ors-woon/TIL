@@ -16,7 +16,6 @@ class StatementReader {
         }
 
         return contents.map { Statement.from(it) }
-
     }
 
 
