@@ -10,9 +10,9 @@ internal class StatementReaderTest {
     @DisplayName("음수 / 양수값을 가져올 수 있는가")
     fun read() {
         val expectSize = 7
-        val statementReader = StatementReader()
+        val statementReader = StatementReaderFactory.getStatementReader(ReaderType.CSV)
 
-        val list: List<Statement> = statementReader.readStatement()
+        val list: List<Statement> = statementReader.readStatements()
 
         assertEquals(expectSize, list.size)
         assertEquals(-100, list[0].price)

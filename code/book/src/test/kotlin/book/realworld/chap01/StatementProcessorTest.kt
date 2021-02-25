@@ -12,7 +12,7 @@ import java.time.Month
     -> 일단 100% 가 아니더라도, 근접하게 짜는게 맞는거 같다.
     (내가 어디까지 실수를 안할 수 있지? 를 보장하기 어려울거 같음.)
  */
-internal class StatementsTest {
+internal class StatementProcessorTest {
     val now = LocalDate.now()
 
     @Test
@@ -20,7 +20,7 @@ internal class StatementsTest {
     fun getSortedList() {
         val limitItem = 10
         val priceFixture: List<Statement> = (1..15).map { Statement(now, it, "상점") }
-        val statements = Statements(priceFixture)
+        val statements = StatementProcessor(priceFixture)
 
         val actual = statements.getSortedItemByPrice(limitItem, SortType.ASC)
 
@@ -36,7 +36,7 @@ internal class StatementsTest {
     fun getSortedListDesc() {
         val limitItem = 10
         val priceFixture: List<Statement> = (1..15).map { Statement(now, it, "상점") }
-        val statements = Statements(priceFixture)
+        val statements = StatementProcessor(priceFixture)
 
         val actual = statements.getSortedItemByPrice(limitItem, SortType.DESC)
 
@@ -54,7 +54,7 @@ internal class StatementsTest {
         val fixture = (0..10)
                 .map { if (it % 2 == 0) -it else it }
                 .map { Statement(now, it, "소비") }
-        val statements = Statements(fixture)
+        val statements = StatementProcessor(fixture)
 
         assertEquals(expectPrice, statements.getTotalCost())
     }
@@ -67,7 +67,7 @@ internal class StatementsTest {
         val fixture = (0..10)
                 .map { if (it % 2 == 0) -it else it }
                 .map { Statement(now, it, "소비") }
-        val statements = Statements(fixture)
+        val statements = StatementProcessor(fixture)
 
         assertEquals(expectPrice, statements.getTotalInCome())
     }
@@ -79,7 +79,7 @@ internal class StatementsTest {
         val februaryDate = LocalDate.of(2021, Month.FEBRUARY, 10)
         val fixture = (1..10)
                 .map { Statement(februaryDate, it, "소비") }
-        val statements = Statements(fixture)
+        val statements = StatementProcessor(fixture)
 
         val februaryCount = statements.getTransactionCount(Month.FEBRUARY)
 
@@ -100,7 +100,7 @@ internal class StatementsTest {
         val shopC = Statement(now, 50, "C")
 
         val fixture = listOf(shopA1, shopA2, shopB, shopC)
-        val statements = Statements(fixture)
+        val statements = StatementProcessor(fixture)
 
         val actual = statements.getMostSpendShop()
 

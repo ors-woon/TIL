@@ -10,7 +10,6 @@ const val DELIMITER = ","
 val DATE_TIME_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
 data class Statement(val date: LocalDate, val price: Int, val shop: String) {
-
     companion object {
         fun from(stringLow: String): Statement {
             val array = stringLow.split(DELIMITER)

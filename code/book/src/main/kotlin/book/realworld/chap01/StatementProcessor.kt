@@ -11,7 +11,7 @@ enum class SortType {
     ;
 }
 
-class Statements(private val statements: List<Statement> = listOf()) : List<Statement> by statements {
+class StatementProcessor(private val statements: List<Statement> = listOf()) : List<Statement> by statements {
     fun getSortedItemByPrice(limitCount: Int, sortType: SortType): List<Statement> =
             if (SortType.ASC == sortType) {
                 statements.sortedBy { it.price }.take(limitCount)
