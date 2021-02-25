@@ -1,18 +1,10 @@
 package book.realworld.chap01
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
 import java.time.Month
-
-/*
-    총 수입과 총 지출은 얼마인가 ? Ok
-    특정 달엔 몇건의 입출금 내역이 발생했는가 ?
-    지출이 가장 높은 상위 10건은 무엇인가 ? ok
-    특정 달엔 몇건의 입출금 내역이 발생했는가 ? ok
-    돈을 가장 많이 소비하는 항목은 무엇인가 ?
- */
 
 /*
     어디까지 테스트를 짜야하는가 ?
@@ -68,7 +60,7 @@ internal class StatementsTest {
     }
 
     @Test
-    @DisplayName("총 수을 구한다.")
+    @DisplayName("총 입금액을 구한다.")
     fun getTotalIncome() {
         val expectPrice = 25
 
@@ -96,6 +88,23 @@ internal class StatementsTest {
         val zeroCount = statements.getTransactionCount(Month.JANUARY)
 
         assertEquals(0, zeroCount)
+    }
+
+    @Test
+    @DisplayName("가장 돈을 많이 소비하는 항목")
+    fun getMostSpendShop() {
+        val expect = "B"
+        val shopA1 = Statement(now, 100, "A")
+        val shopA2 = Statement(now, 200, "A")
+        val shopB = Statement(now, 1000, expect)
+        val shopC = Statement(now, 50, "C")
+
+        val fixture = listOf(shopA1, shopA2, shopB, shopC)
+        val statements = Statements(fixture)
+
+        val actual = statements.getMostSpendShop()
+
+        assertEquals(expect, actual)
     }
 
 

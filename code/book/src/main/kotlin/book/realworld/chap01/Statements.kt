@@ -1,6 +1,9 @@
 package book.realworld.chap01
 
+import org.apache.logging.log4j.util.Strings
 import java.time.Month
+import java.util.stream.Collectors.groupingBy
+import java.util.stream.Collectors.summingInt
 
 enum class SortType {
     DESC,
@@ -25,4 +28,10 @@ class Statements(private val statements: List<Statement> = listOf()) : List<Stat
             .sum()
 
     fun getTransactionCount(month: Month): Int = statements.filter { month == it.date.month }.count()
+
+    fun getMostSpendShop(): String {
+        val shopMap = statements.stream().collect(groupingBy(Statement::shop, summingInt(Statement::price)))
+
+        return shopMap.maxByOrNull { it.value }?.key ?: Strings.EMPTY
+    }
 }
