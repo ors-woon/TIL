@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JvmOverloadsTest {
+	private JvmOverloadsTest() {
+	}
 
 	@Test
 	public void useNotJvmOverload(){
@@ -24,6 +26,5 @@ public class JvmOverloadsTest {
 
 		assertEquals(expected, str.helloJvm());
 	}
-
 
 }
