@@ -63,3 +63,25 @@ null check 부터 default 값까지 위처럼 선언할 수 있다.
 
 
 safe check 와 Elvis operator 를 함께 사용 할 수 있다.
+
+#### let 사용 
+
+* kotlin에서 제공하는 확장함수 중 하나. 아래와 같은 시그니처를 갖고 있다.
+
+```kotlin
+public inline fun <T, R> T.let(block: (T) -> R): R
+```
+
+* 수신 객체에게, 수행하고자 하는 함수 block 을 인자로 넘겨 수행할 수 있다.
+    * null check 와 응용되어 사용한다. 
+    
+```kotlin
+nullable.age?.let {
+    assertEquals(5, it.length)
+    it.length
+} ?: defaultLength
+```
+
+> 주의점은 아래 포스트 참고
+
+https://tourspace.tistory.com/208
