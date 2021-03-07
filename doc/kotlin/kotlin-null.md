@@ -84,4 +84,3 @@ nullable.age?.let {
 
 > 주의점은 아래 포스트 참고
 
-https://tourspace.tistory.com/208
