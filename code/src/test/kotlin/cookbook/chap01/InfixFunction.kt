@@ -1,47 +1,32 @@
 package cookbook.chap01
 
-
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+infix fun String.concatenate(str: String) = "$this $str"
 class InfixFunction {
-
-    @Test
-    @DisplayName("pair")
-    fun pair() {
-        val value = "str"
-        val map = mapOf("key" to value)
-
-        assertEquals(value, map["key"])
-    }
-
-    infix fun Int.isUnder(param: Int): Boolean = this < param
 
     @Test
     @DisplayName("infix function")
     fun infix() {
-        val five = 5
-        val six = 6
+        val expect = "my cat is cute"
 
-        assertTrue(five isUnder six)
-    }
-
-    class MyWishWatch(val list: MutableList<String> = mutableListOf()) : MutableList<String> by list {
-        infix fun addWatch(watch:String) = this.add(watch)
-        infix fun `갖고싶다`(watch:String) = this.add(watch)
+        assertEquals(expect, "my cat is" concatenate "cute")
     }
 
     @Test
-    @DisplayName("객체에 infix 적용")
-    fun watch(){
-        val watches = MyWishWatch()
-        watches addWatch "Oris"
-        watches `갖고싶다` "Omega"
-        watches addWatch "Rolex"
+    @DisplayName("Pair")
+    fun pair() {
+        val map = mapOf("key" to "value", "key2" to "value")
 
-        assertEquals(3, watches.size)
+        assertEquals(2, map.size)
+        assertEquals("value", map["key2"])
+
+        val (key, value) = "key" to "value"
+
+        assertEquals("key", key)
+        assertEquals("value", value)
+
     }
-
 }

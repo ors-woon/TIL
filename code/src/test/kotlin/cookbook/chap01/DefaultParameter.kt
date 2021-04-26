@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class CustomMap<T, R>(val mutableMap: MutableMap<T, R> = mutableMapOf()) : MutableMap<T, R> by mutableMap
+class CustomMap<T, R> @JvmOverloads constructor(val mutableMap: MutableMap<T, R> = mutableMapOf()) : MutableMap<T, R> by mutableMap
 
 @JvmOverloads
 fun <T, R> CustomMap<T, R>.add(key: T, value: R, mergeFunction: (R, R) -> R = { first, second -> first }): Map<T, R> {
@@ -19,9 +19,6 @@ fun <T, R> CustomMap<T, R>.add(key: T, value: R, mergeFunction: (R, R) -> R = { 
     return this
 
 }
-
-// default param 을 java 에서 지원하기 위해, constructor 를 사용해야함
-class Coffee @JvmOverloads constructor(val name: String, val hasCaffeine: Boolean = true)
 
 class DefaultParameter {
 

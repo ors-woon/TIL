@@ -2,6 +2,7 @@ package chap01;
 
 import cookbook.chap01.CustomMap;
 import cookbook.chap01.DefaultParameterKt;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -22,6 +23,19 @@ public class DefaultParamTest {
 		DefaultParameterKt.add(keyboardGroupCountry, "japan", "real-force");
 
 		assertEquals(hhkb, keyboardGroupCountry.get("japan"));
-
 	}
+
+	@Test
+	@DisplayName("kotlin 의 constructor keyword 필요")
+	void defaultParameterWithConstructor() {
+		String hhkb = "HHKB";
+		CustomMap<String, String> keyboardGroupCountry = new CustomMap<>();
+		keyboardGroupCountry.put("japan", hhkb);
+		keyboardGroupCountry.put("korea", "한성");
+
+		DefaultParameterKt.add(keyboardGroupCountry, "japan", "real-force");
+
+		assertEquals(hhkb, keyboardGroupCountry.get("japan"));
+	}
+
 }
