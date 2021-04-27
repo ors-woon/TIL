@@ -109,16 +109,15 @@ class FunctionLiteral {
     }
 
     @Test
+    @DisplayName("also 의 결과, 전 / 후 참조가 바뀌지않는다.")
     fun also() {
-
         val personA = Person()
 
-        val person = Person().also {
+        val person = personA.also {
             it.name = "hello"
-
         }
 
-        assertEquals(personA, person)
+        assertEquals(personA, person, "참조가 바뀌지 않는다")
     }
 
     @Test

@@ -11,7 +11,7 @@ open class Parent {
         val version = 1.0
     }
 
-    open fun getTarget(): String = Companion.target
+    open fun getTarget(): String = target
 }
 
 class Child : Parent() {
@@ -39,7 +39,6 @@ class CompanionSampleTest {
         val expect = Parent
 
         assertTrue(expect is Parent.Companion)
-        assertEquals(expect, Parent.target)
     }
 
     @Test
