@@ -13,7 +13,7 @@ categories = ["dev"]
 
 > 책의 목차만 동일하며, 내용은 이해한대로 재구성한다.
 
-### 2.1 코틀린에서 Null 허용 타입 사용하기
+## 2.1 코틀린에서 Null 허용 타입 사용하기
 
 Kotlin은 Nullable Type과 NotNull Type을 구별한다.
 
@@ -24,9 +24,11 @@ val notNullType: String
 
 `2.1`에선 Null Object을 다루는 방법을 소개한다.
 
-- 0. base 
+### 0. base 
 
-```
+분기문을 통한 null check.
+
+```kotlin
 fun nullableMap(isEmpty: Boolean): List<String>? = if (!isEmpty) {
     mutableListOf("hi", "hello", "안녕")
 } else {
@@ -34,7 +36,9 @@ fun nullableMap(isEmpty: Boolean): List<String>? = if (!isEmpty) {
 }
 ```
 
-- 1. not null 단언 연산자 (code smell)
+### 1. not null 단언 연산자 (code smell)
+
+not null assertion(`!!`) 을 통한 체크. 
 
 ```kotlin
 @Test
@@ -50,7 +54,9 @@ fun handle() {
 }
 ```
 
-- 2. safe call case 
+### 2. safe call case 
+
+safe call (`?.`) 을 통한 체크.
 
 ```kotlin 
 @Test
@@ -63,7 +69,9 @@ fun handleNullable() {
 }
 ```
 
-- 3. safe call + Elvis case 
+### 3. safe call + Elvis case 
+
+safe call 과 Elvis 를 통한 체크.
 
 ```kotlin
 @Test
@@ -76,11 +84,28 @@ fun elvis() {
 }
 ```
 
+위 예제와는 안맞긴 하지만.. `let`을 이용하여 null check 를 할 수 있다.
 
-### 2.2 자바에 널 허용성 지시자 추가하기
+```kotlin
+@Test
+@DisplayName("let")
+fun let() {
+    val nullableList: List<String>? = nullableMap(isEmpty = true)
 
+    val notNullMap: List<Pair<String, Int>> = nullableList?.let { list ->
+        list.map { it to it.length }
+    } ?: emptyList()
 
-설정 
+    assertEquals(0, notNullMap.toMap().size)
+}
+```
+
+## 2.2 자바에 널 허용성 지시자 추가하기
+
+Java 와 kotlin을 함께 사용하고, nullablilty annotation을 강제하고 싶을 경우, 일부 annotation과 compileOption 을 사용할 수 있다.
+ 
+> gradle 설정
+
 ```
 compileKotlin {
   kotlinOptions {
@@ -89,6 +114,8 @@ compileKotlin {
   }
 }
 ```
+
+> 지원 annotation
 
 ```
 - JetBrains (@Nullable and @NotNull from the org.jetbrains.annotations package)
@@ -99,11 +126,39 @@ compileKotlin {
 - Lombok (lombok.NonNull)
 ```
 
-### 2.3 자바를 위한 메서드 중복 
+> 예시 Java 
 
-kotlin 에선 Default Parameter 를 지원하는데, 이를 Java 에서 사용 할 경우 추가 Annotation 선언이 필요로하다.
+```java
+public String getNameWithPrefix(@NonNull String prefix){
+    return prefix + name;
+}
+```
 
-- 0. Kotlin
+> 예시 Kotlin
+
+```kotlin
+@Test
+fun getName() {
+    val prefix = "얼죽아:"
+    val name = "장철운"
+    val person = Person(name, null, 82)
+
+    assertEquals(prefix + name, person.getNameWithPrefix(prefix))
+    /*
+        freeCompilerArgs = ["-Xjsr305=strict"] 추가 시, 아래 코드가 컴파일 에러 발생
+        person.getName(null)
+        */
+}
+```
+
+Java 와 kotlin을 함께 사용한다면, `@nonnull & @nullable` annotation을 사용하자.
+
+
+## 2.3 자바를 위한 메서드 중복 (default param)
+
+kotlin 에선 Default Parameter 를 지원하는데, Java 에서 사용 할 경우 추가 Annotation (`@JvmOverloads`) 선언이 필요로하다.
+
+### 0. Kotlin
 
 ```kotlin
 class CustomMap<T, R> @JvmOverloads constructor(val mutableMap: MutableMap<T, R> = mutableMapOf()) : MutableMap<T, R> by mutableMap
@@ -155,8 +210,10 @@ void defaultParameterWithConstructor() {
 
 kotlin 생성자에 `@JvmOverloads` 를 붙이려면, `constructor` keyword 를 붙여야한다.
 
-추가로, kotlin 의 확장함수를 Java에서 호출하려하면, `$this`를 넘겨줘야한다.
+또한, kotlin 의 확장함수를 Java에서 호출하려하면, `$this`를 넘겨줘야한다.
 아래는 java 로 Decompile 된 kotlin 확장함수이다.
+
+
 
 ```java
 @JvmOverloads
@@ -176,7 +233,7 @@ public static final Map add(@NotNull CustomMap $this$add, Object key, Object val
 }
 ```
 
-### 2.9 to로 Pair 인스턴스 생성하기
+### 2.9 to로 Pair 인스턴스 생성하기 (infix)
 
 kotlin 은 `infix` 라는 keyword로 `중위 함수`를 선언할 수 있다.
 
@@ -184,17 +241,17 @@ kotlin 은 `infix` 라는 keyword로 `중위 함수`를 선언할 수 있다.
 infix fun String.concatenate(str: String) = "$this $str"
 
 @Test
-@DisplayName("Pair")
-fun pair() {
-    val map = mapOf("key" to "value", "key2" to "value")
+@DisplayName("infix function")
+fun infix() {
+    val expect = "my cat is cute"
 
-    assertEquals(2, map.size)
-    assertEquals("value", map["key2"])
-
+    assertEquals(expect, "my cat is" concatenate "cute")
 }
 ```
 
-함수를 문장처럼 쓸 수 있다는 장점(?)이 있음
+함수를 문장처럼 쓸 수 있다는 장점(?)이 있음.
+
+> 단언문과 함께 사용하면, 문장처럼 만들 수 있을거 같다.
 
 대표적인 중위 함수가 `Pair`이며, 아래처럼 사용 할 수 있다.
 
@@ -207,7 +264,7 @@ fun pair() {
     assertEquals(2, map.size)
     assertEquals("value", map["key2"])
 
-    // (A, B) 로 할당도 가능
+    // (A, B) 로 할당도 가능 componentN
     val (key, value) = "key" to "value"
 
     assertEquals("key", key)
@@ -215,17 +272,19 @@ fun pair() {
 }
 ```
 
-### 3.1 const와 val 차이 이해하기
+## 3.1 const와 val 차이 이해하기
 
 const 는 `modifier keyword` 이며, compile time 의 상수이다.
 
-
 *compile time의 상수*
 
+```
 - 최상위 함수 또는 object keyword 와 함께 사용되어야한다. (static)
 - Compile 시점에 값을 사용할 수 있도록, main 함수를 포함한 모든 함수의 바깥쪽에서 할당돼야한다. 
 - 또한 생성자 / 함수 호출로 변수할당을 할 수 없으며, 기본 타입의 래퍼 클래스여야한다.
 - getter 를 갖지 않는다.
+```
+
 
 *val과 const*
 
@@ -267,7 +326,7 @@ const는 Java 로 decompile 했을 때, 큰 차이가 없다. object 내에 선�
 
 > kotlin 에서 compile time 에 변수 할당을 강제할때 사용된다.
 
-### 3.2 사용자 정의 획득자와 설정자 생성하기
+## 3.2 사용자 정의 획득자와 설정자 생성하기
 
 kotlin class 도 다른 객체지향 언어와 마찬가지로, 캡슐화를 지원한다. 
 다만, Kotlin은 default 접근제한자가 public 인데, 얼핏봤을때 데이터 은닉 원칙을 침해하는 것처럼 보인다.
@@ -332,7 +391,7 @@ var palicoRank = 0
 > 객체 내부에서 property를 접근할때도, setter/getter 를 통해서만 접근된다.
 
 
-#### 3.3 데이터 클래스 정의하기
+## 3.3 데이터 클래스 정의하기
 
 kotlin 에서는 equals / hashCode / toString 등 기본 함수(?)를 지원하는 keyword 가 있다.
 
@@ -415,6 +474,7 @@ fun component() {
 }
 ```
 
+## 여담으로 .. 
 
 *주생성자? / 부생성자?*
 

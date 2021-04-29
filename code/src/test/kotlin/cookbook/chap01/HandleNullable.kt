@@ -37,6 +37,19 @@ class HandleNullable {
         assertEquals(0, notNullMap.toMap().size)
     }
 
+    @Test
+    @DisplayName("let")
+    fun let() {
+        val nullableList: List<String>? = nullableMap(isEmpty = true)
+
+        val notNullMap: List<Pair<String, Int>> = nullableList?.let { list ->
+            list.map { it to it.length }
+        } ?: emptyList()
+
+        assertEquals(0, notNullMap.toMap().size)
+    }
+
+
     fun nullableMap(isEmpty: Boolean): List<String>? = if (!isEmpty) {
         mutableListOf("hi", "hello", "안녕")
     } else {
