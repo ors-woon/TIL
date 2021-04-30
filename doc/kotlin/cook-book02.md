@@ -18,13 +18,13 @@ categories = ["dev"]
 Kotlin은 Nullable Type과 NotNull Type을 구별한다.
 
 ```kotlin
-val nullableType: String? 
+val nullableType: String?
 val notNullType: String
 ```
 
 `2.1`에선 Null Object을 다루는 방법을 소개한다.
 
-### 0. base 
+### 0. base
 
 분기문을 통한 null check.
 
@@ -38,7 +38,7 @@ fun nullableMap(isEmpty: Boolean): List<String>? = if (!isEmpty) {
 
 ### 1. not null 단언 연산자 (code smell)
 
-not null assertion(`!!`) 을 통한 체크. 
+not null assertion(`!!`) 을 통한 체크.
 
 ```kotlin
 @Test
@@ -54,7 +54,7 @@ fun handle() {
 }
 ```
 
-### 2. safe call case 
+### 2. safe call case
 
 safe call (`?.`) 을 통한 체크.
 
@@ -69,7 +69,7 @@ fun handleNullable() {
 }
 ```
 
-### 3. safe call + Elvis case 
+### 3. safe call + Elvis case
 
 safe call 과 Elvis 를 통한 체크.
 
@@ -103,7 +103,7 @@ fun let() {
 ## 2.2 자바에 널 허용성 지시자 추가하기
 
 Java 와 kotlin을 함께 사용하고, nullablilty annotation을 강제하고 싶을 경우, 일부 annotation과 compileOption 을 사용할 수 있다.
- 
+
 > gradle 설정
 
 ```
@@ -126,12 +126,12 @@ compileKotlin {
 - Lombok (lombok.NonNull)
 ```
 
-> 예시 Java 
+> 예시 Java
 
 ```java
 public String getNameWithPrefix(@NonNull String prefix){
-    return prefix + name;
-}
+	return prefix+name;
+	}
 ```
 
 > 예시 Kotlin
@@ -152,7 +152,6 @@ fun getName() {
 ```
 
 Java 와 kotlin을 함께 사용한다면, `@nonnull & @nullable` annotation을 사용하자.
-
 
 ## 2.3 자바를 위한 메서드 중복 (default param)
 
@@ -181,56 +180,53 @@ fun <T, R> CustomMap<T, R>.add(key: T, value: R, mergeFunction: (R, R) -> R = { 
 
 ```java
 @Test
-void defaultParameter() {
-    String hhkb = "HHKB";
-    CustomMap<String, String> keyboardGroupCountry = new CustomMap<>(new HashMap<>());
-    keyboardGroupCountry.put("japan", hhkb);
-    keyboardGroupCountry.put("korea", "한성");
+void defaultParameter(){
+	String hhkb="HHKB";
+	CustomMap<String, String> keyboardGroupCountry=new CustomMap<>(new HashMap<>());
+	keyboardGroupCountry.put("japan",hhkb);
+	keyboardGroupCountry.put("korea","한성");
 
-    // annotation 을 달지 않으면, default param 지원 x
-    //DefaultParameterKt.add(keyboardGroupCountry,"japan","real-force")
-    DefaultParameterKt.add(keyboardGroupCountry, "japan", "real-force");
+	// annotation 을 달지 않으면, default param 지원 x
+	//DefaultParameterKt.add(keyboardGroupCountry,"japan","real-force")
+	DefaultParameterKt.add(keyboardGroupCountry,"japan","real-force");
 
-    assertEquals(hhkb, keyboardGroupCountry.get("japan"));
-}
+	assertEquals(hhkb,keyboardGroupCountry.get("japan"));
+	}
 
 @Test
 @DisplayName("kotlin 의 constructor keyword 필요")
-void defaultParameterWithConstructor() {
-    String hhkb = "HHKB";
-    CustomMap<String, String> keyboardGroupCountry = new CustomMap<>();
-    keyboardGroupCountry.put("japan", hhkb);
-    keyboardGroupCountry.put("korea", "한성");
+void defaultParameterWithConstructor(){
+	String hhkb="HHKB";
+	CustomMap<String, String> keyboardGroupCountry=new CustomMap<>();
+	keyboardGroupCountry.put("japan",hhkb);
+	keyboardGroupCountry.put("korea","한성");
 
-    DefaultParameterKt.add(keyboardGroupCountry, "japan", "real-force");
+	DefaultParameterKt.add(keyboardGroupCountry,"japan","real-force");
 
-    assertEquals(hhkb, keyboardGroupCountry.get("japan"));
-}
+	assertEquals(hhkb,keyboardGroupCountry.get("japan"));
+	}
 ```
 
 kotlin 생성자에 `@JvmOverloads` 를 붙이려면, `constructor` keyword 를 붙여야한다.
 
-또한, kotlin 의 확장함수를 Java에서 호출하려하면, `$this`를 넘겨줘야한다.
-아래는 java 로 Decompile 된 kotlin 확장함수이다.
-
-
+또한, kotlin 의 확장함수를 Java에서 호출하려하면, `$this`를 넘겨줘야한다. 아래는 java 로 Decompile 된 kotlin 확장함수이다.
 
 ```java
 @JvmOverloads
 @NotNull
-public static final Map add(@NotNull CustomMap $this$add, Object key, Object value, @NotNull Function2 mergeFunction) {
-    Intrinsics.checkNotNullParameter($this$add, "$this$add");
-    Intrinsics.checkNotNullParameter(mergeFunction, "mergeFunction");
-    boolean isExistKey = $this$add.get(key) != null;
-    if (isExistKey) {
-        Object mergeValue = mergeFunction.invoke(MapsKt.getValue((Map)$this$add, key), value);
-        MapsKt.plus((Map)$this$add, TuplesKt.to(key, mergeValue));
-        return (Map)$this$add;
-    } else {
-        MapsKt.plus((Map)$this$add, TuplesKt.to(key, value));
-        return (Map)$this$add;
-    }
-}
+public static final Map add(@NotNull CustomMap $this$add,Object key,Object value,@NotNull Function2 mergeFunction){
+	Intrinsics.checkNotNullParameter($this$add,"$this$add");
+	Intrinsics.checkNotNullParameter(mergeFunction,"mergeFunction");
+	boolean isExistKey=$this$add.get(key)!=null;
+	if(isExistKey){
+	Object mergeValue=mergeFunction.invoke(MapsKt.getValue((Map)$this$add,key),value);
+	MapsKt.plus((Map)$this$add,TuplesKt.to(key,mergeValue));
+	return(Map)$this$add;
+	}else{
+	MapsKt.plus((Map)$this$add,TuplesKt.to(key,value));
+	return(Map)$this$add;
+	}
+	}
 ```
 
 ### 2.9 to로 Pair 인스턴스 생성하기 (infix)
@@ -285,10 +281,9 @@ const 는 `modifier keyword` 이며, compile time 의 상수이다.
 - getter 를 갖지 않는다.
 ```
 
-
 *val과 const*
 
-val 은 runtime에 변수 할당이 가능하며, keyword 이다. 
+val 은 runtime에 변수 할당이 가능하며, keyword 이다.
 `modifier keyword` 가 아니며, val 과 const는 같이 사용되어야한다.
 
 > modifier keyword => 이미 정의된 keyword 에 추가 의미를 부여한다. (ex abstract / annotaion / public ..)
@@ -313,7 +308,7 @@ class ConstVal {
     @Test
     fun task() {
         val expect = 5
-        val securityTask = Task("보안 이슈",keyword = "hello")
+        val securityTask = Task("보안 이슈", keyword = "hello")
 
         securityTask.priority = expect
 
@@ -326,10 +321,18 @@ const는 Java 로 decompile 했을 때, 큰 차이가 없다. object 내에 선�
 
 > kotlin 에서 compile time 에 변수 할당을 강제할때 사용된다.
 
+#### 여담으로 ..
+
+위 예시를 보면, 생성자 `keyword`에 val / var 이 선언되지 않은걸 볼 수 있다.
+이는 내부 property로 선언하지 않겠다는 의미로, parameter 로 변수를 넘기는 행동과 동일하다.
+
+객체 초기화 시에만 stack 에 유지되는 parameter 변수(?)이다.
+
+> 때문에 keyword 는 init block 이나 변수 초기화 시에만 사용 할 수 있다.
+
 ## 3.2 사용자 정의 획득자와 설정자 생성하기
 
-kotlin class 도 다른 객체지향 언어와 마찬가지로, 캡슐화를 지원한다. 
-다만, Kotlin은 default 접근제한자가 public 인데, 얼핏봤을때 데이터 은닉 원칙을 침해하는 것처럼 보인다.
+kotlin class 도 다른 객체지향 언어와 마찬가지로, 캡슐화를 지원한다. 다만, Kotlin은 default 접근제한자가 public 인데, 얼핏봤을때 데이터 은닉 원칙을 침해하는 것처럼 보인다.
 
 ```kotlin
 class MonsterHunter(val rank: Int, val weapon: String)
@@ -361,12 +364,14 @@ class MonsterHunter(val rank: Int, val weapon: String) {
 속성을 정의하는 문법은 아래와 같다.
 
 ```kotlin
-var <propertyName>[: <PropertyType>] [= <property_initializer>]
+var <propertyName>[: <PropertyType>] [ = <property_initializer>]
 [<getter>]
 [<setter>]
 ```
 
-> [] 는 선택사항을 나타낸다.
+[] 는 선택사항을 나타내며, setter / getter 가 없을 경우, default 함수를 생성한다.
+또한 `val` 은 setter 를 가질 수 없다.
+
 
 *backing field*
 
@@ -381,22 +386,21 @@ var <propertyName>[: <PropertyType>] [= <property_initializer>]
 
 ```kotlin
 var palicoRank = 0
-        set(value) {
-            palicoRank = value.coerceIn(1..20)
-        }
+    set(value) {
+        palicoRank = value.coerceIn(1..20)
+    }
 ```
 
 위처럼 backing field 를 사용하지 않고, `palicoRank`를 직접 참조하면 setter 를 재호출하게 되고, 재귀가 발생하게 된다.
 
 > 객체 내부에서 property를 접근할때도, setter/getter 를 통해서만 접근된다.
 
-
 ## 3.3 데이터 클래스 정의하기
 
 kotlin 에서는 equals / hashCode / toString 등 기본 함수(?)를 지원하는 keyword 가 있다.
 
 ```kotlin
-data class Product(val name:String, val price:Double, val onSale:Boolean)
+data class Product(val name: String, val price: Double, val onSale: Boolean)
 ```
 
 data keyword 를 사용하면, 아래 함수들이 구현된다.
@@ -409,8 +413,7 @@ data keyword 를 사용하면, 아래 함수들이 구현된다.
 - ...
 ```
 
-`equals / hasCode` 는 Effective Java 에서 설명한 알고리즘 기반으로 생성된다.
-주 생성자를 기준으로 함수가 생성된다. (아래 참조)
+`equals / hasCode` 는 Effective Java 에서 설명한 알고리즘 기반으로 생성된다. 주 생성자를 기준으로 함수가 생성된다. (아래 참조)
 
 ```kotlin
 data class Product(var name: String, var price: Double, var onSale: Boolean) {
@@ -447,6 +450,8 @@ class DataClass {
 또한 copy는 얕은 복사를 지원한다.
 
 ```kotlin
+data class Option(val str: String)
+
 data class Product(var name: String, var price: Double, var onSale: Boolean, var option: Option? = null) {
     var isCoupon = false
 }
@@ -469,29 +474,28 @@ fun component() {
     val product = Product("옷", 1000.0, false, Option("색상"))
     val (name, price, onSale, option) = product
 
-    assertTrue(name== product.name)
-    assertTrue(price== product.price)
+    assertTrue(name == product.name)
+    assertTrue(price == product.price)
 }
 ```
 
-## 여담으로 .. 
+## 여담으로 ..
 
 *주생성자? / 부생성자?*
 
-Kotlin은 주생성자와 다수의 부생성자를 가질수 있다.
-class 선언 시, 괄호로 둘러쌓인 코드를 주 생성자라고 부른다.
+Kotlin은 주생성자와 다수의 부생성자를 가질수 있다. class 선언 시, 괄호로 둘러쌓인 코드를 주 생성자라고 부른다.
 
 ```kotlin
-class Product(val name:String, val price:Double, val onSale:Boolean)
+class Product(val name: String, val price: Double, val onSale: Boolean)
 
-class Product private constructor(val name:String, val price:Double, val onSale:Boolean)
+class Product private constructor(val name: String, val price: Double, val onSale: Boolean)
 ```
 
 부 생성자란, class body에 선언된 생성자를 의미하며, 기본 생성자를 호출하여 초기화 해야한다.
 
 ```kotlin
 data class Product(var name: String, var price: Double, var onSale: Boolean) {
-    constructor(name: String, price: Double) : this(name, price, true) 
+    constructor(name: String, price: Double) : this(name, price, true)
 }
 ```
 
@@ -530,6 +534,5 @@ init 옷
 ```
 primary -> init -> secondary 
 ```
-
 
 *끗*
