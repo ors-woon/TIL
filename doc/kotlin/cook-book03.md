@@ -17,6 +17,8 @@ categories = ["dev"]
 
 Property 를 노출하고 싶지만, 초기화 시점을 제어하고 싶을 경우, 아래처럼 내부 property 를 사용 할 수 있다.
 
+> 객체 생성 시점 이후, property를 초기화 하고 싶을때
+
 ```kotlin
 class Customer(val name: String) {
     private var _messages: List<String>? = null
@@ -59,7 +61,115 @@ val messages: List<String> by lazy { loadMessages() }
 
 ## 3.5 연산자 중복
 
-operate keyword 를 통해 연산자를 재 정의 할 수 있다.
+operator keyword 를 통해 연산자를 재 정의 할 수 있다.
+
+지원하는 operator 함수 목록은 [공식 문서](https://kotlinlang.org/docs/operator-overloading.html#infix-calls-for-named-functions)를 참고
+
+
+```kotlin
+data class Point(val x: Int, val y: Int)
+
+operator fun Point.unaryMinus() = Point(-x, -y)
+
+@Test
+fun unaryMinus() {
+    val point = Point(5, 7)
+    val expect = Point(-5, -7)
+
+    assertEquals(expect, point.unaryMinus())
+}
+```
+
+## 여담 : kotlin의 annotation (use-site target)
+
+kotlin의 property 한줄을 Java 로 변환하면, getter / setter / field 등 여러 줄을 생성한다.
+
+> Q. 만약 property에 annotation을 할당하면, 어느 속성에 annotation이 선언될까 ? 
+
+개발자가 이를 명확하게 표시할 수 있게, `use-site target` 이라는 keyword을 제공한다.
+
+```kotlin
+class Example(@field:Fancy val foo : String,    // annotate Java field
+              @get:TT val bar : Int,      // annotate Java getter
+              @param:[Fancy TT] val quux: Any)   // annotate Java constructor parameter
+```
+
+지원하는 목록은 아래와 같다.
+```
+file (package 위에 annotation을 지정할 수 있다.)
+property (annotations with this target are not visible to Java)
+field
+get (property getter)
+set (property setter)
+receiver (receiver parameter of an extension function or property)
+param (constructor parameter)
+setparam (property setter parameter)
+delegate (the field storing the delegate instance for a delegated property)
+```
+
+만약 use-site target을 지정하지 않으면, annotation 지정시 설정한 @Target으로 선언된다.
+만약 target 이 여러개인 경우, 아래 목록의 첫번째 Target 이 지정된다.
+
+```
+param
+property
+field
+```
+
+> todo test 필요 
+
+
+## 여담2: KProperty0 ???
+
+
+## 3.6 나중 초기화를 위해 lateinit 사용하기
+
+널 비허용 속성으로 만들고 싶으나, 초기화 시 정보가 충분하지 않을 경우 lateinit 을 사용 할 수 있다.
+
+> 주의: 의존성 주입의 경우 유용하나, 가능하다면 lazy keyword 같은 대안을 먼저 고려하라.
+
+대표적인 lateinit 사용처는 spring `framework`이다.
+
+```kotlin
+class ControllerTest {
+    @Autowired
+    lateinit var client:WebTestClient
+}
+```
+
+> 5.2 부턴 @TestConstructor(autowireMode = AutowireMode.ALL) 로 생성자 주입을 쓸 수도 있다.
+
+```
+- getter/setter 가 없는 var 속성에만 사용 할 수 있다. (mutable)
+- null 할당 불가능한 타입에만 사용가능 
+- 기본 타입에는 사용불가
+- 사용 전 초기화에 실패하면 Exception 발생
+```
+
+> 예시
+
+```kotlin
+lateinit var string: String
+
+@Test
+fun initCheck() {
+    assertFalse(::string.isInitialized)
+
+    string = "helloWord"
+
+    assertTrue(::string.isInitialized)
+}
+```
+
+> :: 으로 isInitialized 함수 호출 가능
+
+
+## 3.7  equals 재정의를 위해 안전 타입 변환, 레퍼런스 동등, 엘비스 사용하기
+
+
+
+
+
 
 
 
