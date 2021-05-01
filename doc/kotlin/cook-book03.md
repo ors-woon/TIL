@@ -118,7 +118,6 @@ field
 
 > todo test 필요 
 
-
 ## 여담2: KProperty0 ???
 
 
@@ -167,8 +166,40 @@ fun initCheck() {
 ## 3.7  equals 재정의를 위해 안전 타입 변환, 레퍼런스 동등, 엘비스 사용하기
 
 
+안전 타입 변환 (`as?`)/ 레퍼런스 동등(`==`) / elvis 를 사용하여 equals 를 구현해본다.
 
+> 1. kotlin의 동일(`equivalence`) / 동등(`equality`) 
 
+객체 지향 언어는, 동일(`equivalence`) / 동등(`equality`) 개념이 있다.
+Java와는 다르게 Kotlin 에서는 `==` 연산은 동등성을 확인 할 수 있으며, `===`을 사용하여 Java의 `==` 과 같은 연산을 수행 할 수 있다.
+
+> 2. 안전 타입 변환 (`as?`)
+
+nullable property에 casting 을 진행 할 경우, NPE 가 발생할 수 있다.
+이를 막고자 safe type casting 을 지원한다. `as?` 
+
+```kotlin
+@Test
+fun safeTypeCheck(){
+    val number:Any? = 5
+    val nullable:Any? = null
+
+    assertTrue((number as? Int) is Int)
+    // null 이면 elvis 로 지정한 값을 리턴한다.
+    assertTrue((nullable as? Int ?: 0) is Int)
+}
+```
+
+위 방법들을 이용하여, equals 를 구현 할 수 있다.
+대표적인 class 가 KotlinVersion 이다.
+
+```kotlin
+override fun equals(other: Any?): Boolean {
+    if (this === other) return true // equivalence 
+    val otherVersion = (other as? KotlinVersion) ?: return false // safe type 
+    return this.version == otherVersion.version // equality
+}
+```
 
 
 
