@@ -201,6 +201,16 @@ override fun equals(other: Any?): Boolean {
 }
 ```
 
+## 3.8 싱글톤 생성하기
+
+kotlin은 object keyword 로 singleton 을 사용 할 수 있다.
+
+```kotlin
+object Person(val name:String)
+```
+
+
+
 
 
 

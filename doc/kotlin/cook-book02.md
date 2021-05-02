@@ -229,6 +229,9 @@ public static final Map add(@NotNull CustomMap $this$add,Object key,Object value
 	}
 ```
 
+
+> TODO 생성자 호출 시, super 호출을 안함 ? 
+
 ### 2.9 to로 Pair 인스턴스 생성하기 (infix)
 
 kotlin 은 `infix` 라는 keyword로 `중위 함수`를 선언할 수 있다.
