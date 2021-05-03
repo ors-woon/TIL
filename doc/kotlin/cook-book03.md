@@ -203,11 +203,66 @@ override fun equals(other: Any?): Boolean {
 
 ## 3.8 싱글톤 생성하기
 
-kotlin은 object keyword 로 singleton 을 사용 할 수 있다.
+kotlin은 singleton을 언어에서 지원한다.
+
+```
+- 클래스의 모든 생성자를 private 로 정의한다.
+- 인스턴스의 reference를 리턴하는 정적 팩터리 메서드를 제공한다.
+```
+
+`Kotlin 예시`
 
 ```kotlin
-object Person(val name:String)
+object Person {
+    val name = "chulwoon"
+}
+
+@Test
+fun person() {
+    // 바로 접근 가능
+    assertEquals("chulwoon", Person.name)
+}
 ```
+
+`Java code` 
+
+```java
+public final class Person {
+   @NotNull
+   private static final String name;
+   @NotNull
+   public static final Person INSTANCE;
+
+   @NotNull
+   public final String getName() {
+      return name;
+   }
+
+   private Person() {
+   }
+
+   static {
+      Person var0 = new Person();
+      INSTANCE = var0;
+      name = "chulwoon";
+   }
+}
+
+// Java 에서 접근 시
+Person.INSTANCE.getName(); 
+```
+
+object는 생성자를 가질 수 없기때문에, 쉽게 인자를 전달 할 수 있는 방법이 없다.
+인자를 전달하기 위해서, companion object 를 활용할 수 있다.
+[Kotlin Singleton Pattern](https://bonoogi.postype.com/post/3591846)
+
+~spring 사용시, 거의 안쓸거 같지만..~
+
+## 3.9 Nothing에 관한 야단 법석
+
+Nothing 은 리턴이 없는 Type 을 의미한다.
+
+
 
 
 
