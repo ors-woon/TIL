@@ -50,7 +50,7 @@ void lineCoverage() {
 위 예시는 Line Coverage 로 측정시, 100%로 나오지만, boolean 값을 false 로 설정시, NPE 가 발생하는 코드이다.
 
 
-![jacoco report](./jacoco-report.png)
+![jacoco report](jacoco-report.png)
 
 위 report 를 통해, Line 은 100%지만, branch 는 50%인걸 확인 할 수 있다.
 
