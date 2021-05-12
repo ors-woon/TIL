@@ -37,7 +37,7 @@ class MockRestServiceServerTest {
             .header("MyHeader", "header")
             .build()
 
-        val actual = RestTemplate().exchange(request, String::class.java)
+        val actual = restTemplate.exchange(request, String::class.java)
 
         mockServer.verify()
         assertEquals(expect, actual.body)
