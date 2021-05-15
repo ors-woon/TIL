@@ -117,8 +117,6 @@ property
 field
 ```
 
-> todo test 필요
-
 ## 여담2: KProperty0 ???
 
 ## 3.6 나중 초기화를 위해 lateinit 사용하기
