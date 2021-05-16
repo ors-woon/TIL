@@ -19,9 +19,15 @@ categories = ["dev"]
 
 - TODO 불변성은 이해함 반복 / 변형, 조건 / 필터 ?
 
+# 들어가며 2
+
+*[inline keyword](https://kotlinlang.org/docs/inline-functions.html)*
+
+
+
 ## 4.1 알고리즘에서 fold 사용하기
 
-fold 함수를 사용하여, Collection / Sequence를 하나의 값으로 축약(`reduce`)시킨다. 함수의 문법은 아래와 같다.
+fold 함수를 사용하여, Collection / Sequence를 하나의 값으로 축약(`reduce`)시킨다. 함수의 구현은 아래와 같다.
 
 ```kotlin
 public inline fun <T, R> Iterable<T>.fold(initial: R, operation: (acc: R, T) -> R): R {
@@ -85,9 +91,61 @@ fun fibonarcciFold(n: Int) =
     }.second
 ```
 
-위 피보나치는 acc 값을 고려하지 않기때문에 `_`을 사용했다. 
-흥미로운 점은 누적 값의 타입이 범위의 원소 타입과 다르다는 것이다.
+위 피보나치는 acc 값을 고려하지 않기때문에 `_`을 사용했다. 흥미로운 점은 누적 값의 타입이 범위의 원소 타입과 다르다는 것이다.
 `원소 타입은 Int, 누적 값은 Pair이다.`
 
-> TODO Inline 함수의 장점이 뭐지 ?
+## 4.2 reduce 함수를 사용해 축약하기
+
+reduce는 fold 와 동일한 목적으로 사용되는데, 두 함수의 큰 차이점은 초기 값 인자가 없다는 점이다.
+
+reduce 의 구현은 아래와 같다.
+
+```kotlin
+public inline fun <S, T : S> Array<out T>.reduce(operation: (acc: S, T) -> S): S {
+    if (isEmpty())
+        throw UnsupportedOperationException("Empty array can't be reduced.")
+    var accumulator: S = this[0]
+    for (index in 1..lastIndex) {
+        accumulator = operation(accumulator, this[index])
+    }
+    return accumulator
+}
+```
+
+fold와는 다르게, 첫번째 인자를 초기값으로 할당하여, 인자로 전달된 람다를 실행시키는 구조이다.
+
+> 사용 예시
+
+```kotlin
+@Test
+fun reduce() {
+    val result = arrayOf(1, 4, 8).reduce { acc, item ->
+        acc * item
+    }
+    assertEquals(32, result)
+}
+```
+
+> 그렇다면, 인자가 2개인 fold 보단 reduce 를 쓰는게 더 편하지 않을까?
+
+reduce는 parameter로 넘겨진 lambda가 첫번째 인자에 대해서는 수행되지 않는다.
+
+각각의 입력 값을 2배로 곱한 합을 reduce로 구현해보자.
+
+```kotlin
+@Test
+fun reduce_badCase() {
+    val result = arrayOf(1, 3, 7).reduce { acc, item ->
+        acc + (2 * item)
+    }
+    assertEquals(21, result)
+}
+```
+
+사용자의 기대는, 1 / 3 / 7 을 2배로 곱한 값들의 합을 구하는 것이지만, 첫번째 item 이 초기값으로 할당 됨으로 로직에선 제외된다.
+
+> 첫번째 item에 추가 연산이 필요 없을때만 reduce 를 사용해라.
+
+*여담으로* java 에서는 overload를 이용하여, reduce 를 제공한다. (fold / reduce 구분하지 않는다.)
+
 > 항등원이 뭐더라 ..?

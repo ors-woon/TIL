@@ -6,6 +6,7 @@ public class CoverageSample {
 		if (isSample) {
 			str = "hello";
 		}
+
 		return str.length();
 	}
 
