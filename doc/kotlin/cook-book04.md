@@ -13,11 +13,8 @@ categories = ["dev"]
 
 > 책의 목차만 동일하며, 내용은 이해한대로 재구성한다.
 
-# 들어가며
 
-함수형 프로그래밍이라는 용어는 `불변성`을 선호하고, `반복`보다는 `변형`, `조건문`보다는 `필터`를 사용하는 코딩 스타일을 지칭한다.
-
-- TODO 불변성은 이해함 반복 / 변형, 조건 / 필터 ?
+들어가며, inline과 관련된 [kotlin in action](http://www.yes24.com/Product/Goods/55148593)의 8장의 내용을 먼저 이야기한다.
 
 # 들어가며 - Higher-Order Function
 
@@ -178,6 +175,7 @@ fun nonLocalNotInlineFun(){
 }
 ```
 
+
 ## 4.1 알고리즘에서 fold 사용하기
 
 fold 함수를 사용하여, Collection / Sequence를 하나의 값으로 축약(`reduce`)시킨다. 함수의 구현은 아래와 같다.
@@ -301,4 +299,8 @@ fun reduce_badCase() {
 
 *여담으로* java 에서는 overload를 이용하여, reduce 를 제공한다. (fold / reduce 구분하지 않는다.)
 
-> 항등원이 뭐더라 ..?
+## 4.3 꼬리 재귀 적용하기 
+
+tailrec 이라는 keyword 를 붙이면, compiler 가 재귀 함수를 반복 문으로 변경한다.
+
+> 사용할 일이 극히 드믈거 같아, 정리하진 않는다.
