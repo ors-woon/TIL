@@ -19,9 +19,68 @@ categories = ["dev"]
 
 - TODO 불변성은 이해함 반복 / 변형, 조건 / 필터 ?
 
-# 들어가며 2
+# 들어가며 - Higher-Order Function
+
+Kotlin 은 Higher-Order Function (`이하 고차함수`)에 대하여, Inline keyword 를 지원한다.
+고차함수란, 함수를 인자로 받거나, 함수를 반환하는 함수를 의미한다.
+
+> kotlin 은 function이 first citizen 이기에 고차함수를 사용할 수 있다.
+
+대표적인 고차함수가, stream/ sequence 에서 사용하는 `filter / map` 함수 이다.
+
+```kotlin
+public inline fun <T> Iterable<T>.filter(predicate: (T) -> Boolean): List<T> {
+    return filterTo(ArrayList<T>(), predicate)
+```
+
+inline keyword 가 없는 고차 함수에 람다를 사용하면, `.class` 로 컴파일 될때 interface 의 함수안에 body가 구현한다.
+
+```kotlin
+/** A function that takes 0 arguments. */
+public interface Function0<out R> : Function<R> {
+    /** Invokes the function. */
+    public operator fun invoke(): R
+}
+```
+
+> argument 의 수에 따라, Function$N 이라는 이름의 Interface 로 대체된다.
+
+즉, 고차함수를 사용할때마다, 익명 클래스의 객체가 생기고, 이는 overhead를 발생시킨다.
+
+*여담*
+
+lambda 함수도 Nullable 하게 설정할 수 있으며, safe call 을 사용 할 수 있다.
+
+```kotlin
+fun <T> T.printBoolean(predicate: ((T) -> Boolean)?) {
+    print(predicate?.invoke(this))
+}
+
+// 구현 부 
+@Test
+fun filter() {
+    "true".printBoolean { it.toBoolean() }
+}
+```
+
+## 들어가며 - inline 
 
 *[inline keyword](https://kotlinlang.org/docs/inline-functions.html)*
+
+고차 함수 사용 시, Overhead 를 막기 위해, kotlin 에서는 inline 이라는 keyword 를 지원한다.
+function 선언 부에 inline modifier 를 추가하면, compile 시 함수 호출 코드를 구현으로 대체한다.
+ 
+또한 inline keyword function 뿐 아니라 함수의 인자로 넘어오는 람다도 inline 취급되는데, 변수에 저장된 함수를 호출할땐 inline 으로 대체되지 않는다.
+
+> TODO Test 필요
+
+
+유사한 이유로, kotlin 의 Sequence 는 inline 으로 대체되지 않는다. 때문에 모든 collection 에 asSequence 를 붙이는건 피해야한다.
+
+> 최종 연산 전까지 실행되지 않으므로, 중간 람다를 변수에 저장한다.
+
+## 들어가며 - non-local return 
+
 
 
 
