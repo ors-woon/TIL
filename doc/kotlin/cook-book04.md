@@ -69,20 +69,114 @@ fun filter() {
 
 고차 함수 사용 시, Overhead 를 막기 위해, kotlin 에서는 inline 이라는 keyword 를 지원한다.
 function 선언 부에 inline modifier 를 추가하면, compile 시 함수 호출 코드를 구현으로 대체한다.
- 
-또한 inline keyword function 뿐 아니라 함수의 인자로 넘어오는 람다도 inline 취급되는데, 변수에 저장된 함수를 호출할땐 inline 으로 대체되지 않는다.
 
-> TODO Test 필요
+또한 inline keyword function 뿐 아니라 함수의 인자로 넘어오는 람다도 inline 취급되는데, 넘어온 함수를 변수에 할당 할 경우 inline 으로 대체 할 수 없다.
 
+> .class 코드에 함수 호출 부를 구현으로 바꾸는 방식이여서, 함수를 새로운 변수에 할당 할 경우, inline 을 할 수 없다.
+
+```kotlin
+inline fun <T, R> Array<out T>.foldNotInline(initial: R, operation: (acc: R, T) -> R): R {
+    var accumulator = initial
+    val function = operation // compile error 발생
+    for (element in this) function(accumulator, element)
+    return accumulator
+}
+```
+
+> error 
+
+```
+Illegal usage of inline-parameter 'operation' in 'public inline fun <T, R> Array<out T>.foldNotInline(initial: R, operation: (acc: R, T) -> R): R defined in cookbook.chap04 in file InlineTest.kt'. Add 'noinline' modifier to the parameter declaration
+> Task :compileTestKotlin FAILED
+```
+
+위 예시 뿐 아니라, 넘어온 함수를 (inline이 아닌) 다른 함수의 paramter로 넘기는 방식도 마찬가지이다.
+
+```kotlin
+inline fun <T, R> Array<out T>.foldNotInline(initial: R, operation: (acc: R, T) -> R): R {
+    var accumulator = initial
+    for (element in this) {
+        secondFunction(initial, element, operation) // compile error !!
+    }
+
+    return accumulator
+}
+
+fun <T, R> secondFunction(first: R, second: T, operation: (acc: R, T) -> R) = operation(first, second)
+```
+
+만약 inline 함수의 param 에 inline 을 제거하고 싶다면, `noinline` 을 붙이면 된다.
 
 유사한 이유로, kotlin 의 Sequence 는 inline 으로 대체되지 않는다. 때문에 모든 collection 에 asSequence 를 붙이는건 피해야한다.
 
-> 최종 연산 전까지 실행되지 않으므로, 중간 람다를 변수에 저장한다.
+```kotlin
+public fun <T, R> Sequence<T>.map(transform: (T) -> R): Sequence<R> {
+    return TransformingSequence(this, transform)
+}
+```
+
+> 지연 초기화를 위해, 중간 함수를 property 로 저장하기 때문에 inline 을 사용 할 수 없다.
 
 ## 들어가며 - non-local return 
 
+`non-local return` 이란 자신을 둘러싸고 있는 블록보다, 더 바깥에 있는 블록을 끝내는 것을 의미한다.
+
+```kotlin
+@Test
+fun nonLocal(){
+    listOf(1,4,7).forEach {
+        if( it == 1){
+            return
+        }
+    }
+    println("안녕")
+}
+```
+
+위 forEach 안에 있는 return 은 자기 자신의 블록이 아닌, nonLocal 함수 블록을 끝내버린다.
+
+> 컴파일 시에 inline 으로 대체되기때문에 위 같은 처리가 가능하다.
+
+만약 inline 함수가 아니라면, 다른 변수에 저장되거나 함수의 return 으로 사용될 수 있기 때문에, 위 같은 처리는 불가능하다.
+
+```kotlin
+@Test
+fun nonLocalNotInline(){
+    listOf(1,4,7).forEachNotInline {
+        if( it == 1){
+            return // compile error!! 'return' is not allowed here
+        }
+    }
+    println("안녕")
+}
+```
+
+만약 inline 이 아닌 함수를 return 하기 위해선, label 사용 해야한다. `return@forEachNotInline`
+또한 아래처럼 label 이름을 지정 할 수 도 있다.
+```kotlin
+listOf(1,4,7).forEachNotInline label@{
+            if( it == 1){
+                return@label
+            }
+        }
+```
+
+> non-local 과 구분하기 위함
 
 
+위 label 이 불필요해보인다면, 무명 함수를 사용하여, local return 을 사용 할 수 있다.
+
+```kotlin
+@Test
+fun nonLocalNotInlineFun(){
+    listOf(1,4,7).forEachNotInline(fun(it:Int){
+        if( it == 1){
+            return
+        }
+    })
+    println("안녕") // 출력된다 !
+}
+```
 
 ## 4.1 알고리즘에서 fold 사용하기
 
