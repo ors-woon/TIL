@@ -1,14 +1,14 @@
 package chap01;
 
-import cookbook.chap01.CustomMap;
-import cookbook.chap01.DefaultParameterKt;
-import cookbook.chap02.Task;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import kotlinbook.cookbook.chap01.CustomMap;
+import kotlinbook.cookbook.chap01.DefaultParameterKt;
 
 public class DefaultParamTest {
 
