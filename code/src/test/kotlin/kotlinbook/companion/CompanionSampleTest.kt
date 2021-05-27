@@ -29,6 +29,7 @@ class CompanionSampleTest {
     fun shortcut() {
         val expect = Parent.Companion.target
 
+        (null as String?).isNullOrBlank()
         assertEquals(expect, Parent.Companion.target)
     }
 
