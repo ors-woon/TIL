@@ -208,3 +208,30 @@ fun kotlinPrimitive() {
 대부분의 경우 primitive Type 으로 compile 되지만, GenericType 과 Nullable Type 의 경우, Wrapper 으로 compile 된다. 
 
 > Jvm 에서 generic 구현 시, primitive Type 을 허용하지 않는다.
+
+## 숫자 변환
+
+코틀린은 한 타입의 숫자를 다른 타입으로 변환하지 않는다.
+
+```kotlin
+val i = 1
+val l:Long = i // compile error 
+```
+대신 모든 원시 타입에 대한 변환 함수를 제공한다. `toInt(), toLong()`  
+자동 변환을 지원하지 않는 이유는 개발자들의 혼란을 피하기 위해서인데, 자바에서 Wrapper Type 을 비교 할 경우 간혹 원치 않는 결과가 나온다.
+
+```java
+new Integer(42).equals(new Long(42)) // false
+```
+
+위 같은 문제를 잡기위해, 자동변환을 지원하지 않으며, 아래 코드는 error 를 뱉는다.
+```kotlin
+val x = 1
+val list = listOf(1L,2L,3L)
+//  Back-end (JVM) Internal error: Failed to generate expression: KtCallExpression
+x in list
+
+// x.toLong() in list 로 사용해야한다.
+```
+
+## Collection 과 Array 
