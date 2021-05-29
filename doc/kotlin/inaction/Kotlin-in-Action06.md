@@ -181,7 +181,7 @@ public final void upper(@NotNull Person person) {
 
 kotlin  에서는 호출 시점에 Exception이 터지므로, java class 를 Kotlin 으로 상속하여 사용할 경우, override 시 type을 신중히 선택해야한다.
 
-> platformType 을 notnull 로 명시했음에도, null 이 들어올 수 있으므로 NPE 주의 
+> platformType 을 notnull 로 명시했음에도, null 이 들어올 수 있으므로 NPE 주의 ! (단 primitive 는 null 이 들어갈 수 없으므로, 안전하다.)
 
 ## 왜 platformType 을 도입햇나 ?
 
@@ -189,3 +189,22 @@ java의 모든 타입을 nullable 로 인지 할 경우, 결코 널이 될 수 �
 또한 generic 을 함께 사용 할 경우, `ArrayList<String?>?` 으로 감지되고, 이는 사용때마다 null check 를 하는 번거로움을 야기한다.
 때문에 개발자에게 책임을 부여하는 접근 방법을 택했다.
 
+
+## 원시 타입 
+
+Kotlin 은 primitive 타입과 래퍼 타입을 구분하지 않으며, 원시 타입의 값에 대해 메서드를 호출 할 수 있다.
+
+```kotlin
+@Test
+@DisplayName("kotlin은 primitive 타입을 구분하지 않는다.")
+fun kotlinPrimitive() {
+    val num = 1.coerceIn(1..5) // Integer(1).coerceIn 처럼 사용하지 않아도 됨
+
+    assertEquals(1, num)
+}
+```
+
+항상 Wrapper로 관리하면 비효율적이기 때문에, 코드 작성 시점에는 Primitive / Wrapper Type 을 구분하지 않지만, byteCode 로 변환 시 둘 중 하나의 Type 으로 변경된다.
+대부분의 경우 primitive Type 으로 compile 되지만, GenericType 과 Nullable Type 의 경우, Wrapper 으로 compile 된다. 
+
+> Jvm 에서 generic 구현 시, primitive Type 을 허용하지 않는다.
