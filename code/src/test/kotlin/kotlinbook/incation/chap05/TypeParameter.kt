@@ -18,11 +18,4 @@ class TypeParameter {
         printHashCode(null)
     }
 
-    @Test
-    fun numberAutoCasting(){
-        val x:Int = 1
-        val list = listOf<Long>(1L,2L,3L)
-
-        assertTrue(x in list)
-    }
 }
