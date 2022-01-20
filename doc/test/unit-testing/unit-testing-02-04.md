@@ -15,7 +15,7 @@ categories = ["dev","test"]
 
 #### 4장. 좋은 단위 테스트의 4대 요소
 
-1. 회귀 방지S
+1. 회귀 방지
 2. 빠른 피드백 
 3. 리팩터링 내성 
 4. 유지 보수성
@@ -59,39 +59,22 @@ categories = ["dev","test"]
 
 
 ```kotlin
-class Message(val header: String, val body: String, val footer: String)
-
-
 interface IRenderer {
-    fun render(message: Message): String
+    fun render(): String
 }
 
-class MessageRenderer : IRenderer {
-    val subRenderers: MutableList<IRenderer>
+class MessageRenderer {
+    val subRenderers: MutableList<IRenderer> = mutableListOf()
 
     init {
-        subRenderers = mutableListOf()
         subRenderers.add(HeaderRenderer())
     }
 
-    override fun render(message: Message): String = subRenderers.joinToString("\n") { it.render(message) }
+    fun render(): String = subRenderers.joinToString("\n") { it.render() }
 }
 
 class HeaderRenderer : IRenderer {
-    override fun render(message: Message): String = "header"
-}
-
-// Test 
-@Test
-fun messageRenderer_uses_correct_sub_renderers() {
-
-    val sut = MessageRenderer()
-
-    val renderer = sut.subRenderers
-
-    // 식별할 수 있는 동작이 아닌, 세부 구현을 체크하는 테스트
-    assertEquals(1, renderer.size)
-    assertTrue(renderer[0] is HeaderRenderer)
+    override fun render(): String = "header"
 }
 ```
 

@@ -1,23 +1,19 @@
 package unittest.ch04
 
-class Message(val header: String, val body: String, val footer: String)
-
-
 interface IRenderer {
-    fun render(message: Message): String
+    fun render(): String
 }
 
-class MessageRenderer : IRenderer {
-    val subRenderers: MutableList<IRenderer>
+class MessageRenderer {
+    val subRenderers: MutableList<IRenderer> = mutableListOf()
 
     init {
-        subRenderers = mutableListOf()
         subRenderers.add(HeaderRenderer())
     }
 
-    override fun render(message: Message): String = subRenderers.joinToString("\n") { it.render(message) }
+    fun render(): String = subRenderers.joinToString("\n") { it.render() }
 }
 
 class HeaderRenderer : IRenderer {
-    override fun render(message: Message): String = "header"
+    override fun render(): String = "header"
 }
