@@ -4,10 +4,14 @@ interface IRenderer {
     fun render(): String
 }
 
-class MessageRenderer {
+class MessageRenderer(val list: List<IRenderer> = listOf()) {
     val subRenderers: MutableList<IRenderer> = mutableListOf()
 
     init {
+        if (list.isNotEmpty()) {
+            subRenderers.addAll(list)
+        }
+
         subRenderers.add(HeaderRenderer())
     }
 
