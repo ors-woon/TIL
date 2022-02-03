@@ -174,7 +174,7 @@ class HeaderRenderer : IRenderer {
 
 테스트 피라미드란, 테스트 유형간의 일정한 비율을 일컫는 개념이다.
 
-![test-pyramid](../unit-testing/test-pyramid.jpg)
+![test-pyramid](test-pyramid.jpg)
 
 - 너비 -> 테스트의 수를 의미한다
 - 높이 -> 사용자의 동작을 얼마나 유사하게 흉내내는가를 의미한다.

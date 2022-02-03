@@ -83,7 +83,7 @@ CQS 원칙에 따르면 모든 메서드는 명령이거나 조회여야 하며,
 Domain 계층은 application 의 중심부 이기에, 도표의 중앙에 위치하며, 핵심 비즈니스 로직이 포함되어 있다.
 
 
-![Hexagonal architecture](../unit-testing/Hexagonal-architecture.png)
+![Hexagonal architecture](../Hexagonal-architecture.png)
 
 Application 계층은 Domain 계층 위에 있으며, 외부 환경과의 통신을 조정한다.  즉, Domain 과 외부 의존성 간의 작업을 조정한다.
 application 과 domain 계층의 조합은 육각형을 형성하며, application 을 형성한다. 또한 다른 application 과 소통할 수 있고, 이또한  육각형으로 나타낸다.
