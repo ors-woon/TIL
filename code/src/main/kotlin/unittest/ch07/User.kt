@@ -6,7 +6,7 @@ package unittest.ch07
  * 2. 시스템은 회사의 직원 수를 추적해야한다. (사용자 유형이 직원 -> 고객 그 반대로 변경되면 이 숫자도 변경해야한다.)
  * 3. 이메일이 변경되면 외부 시스템에 알려야한다.
  */
-class User(var userId: String, var email: String, var userType: UserType) {
+class User(var userId: Int, var email: String, var userType: UserType) {
     fun changeEmail(userId: Int, newEmail: String) {
         // val data = DataBase.getUserById(userId)
         val data: Array<Any?> = arrayOf("email", UserType.EMPLOYEE)

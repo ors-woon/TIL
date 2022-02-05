@@ -102,3 +102,66 @@ Humble Object Pattern 은 orchestration 을 수행하는 코드에서 복잡한 
 
 예제 [user](/code/src/main/kotlin/unittest/ch07/User.kt)
 
+해당 예제는 복잡도 측면에서 점수가 낮으나, 도메인 유의성 측면에선 점수가 높다.
+또한, 프로세스 외부 의존성이 있으며, 협력자 수가 많다고 볼 수 있다.
+
+> 도메인 유의성이 높은 코드에 프로세스 외부 협력자를 사용해선 안된다.
+
+따라서 위 예제는 `지나치게 복잡한 코드`로 분류 된다.
+
+해당 예제는 도메인 로직와 orchestration 의 분리가 없어, 코드 베이스가 커지면 확장에 어려움을 겪게 된다.
+
+1. 결합도를 낮추기 위해, Interface 를 통한 의존성 설정이 가능하다.
+
+다만 위 예제는 도메인 코드에 외부 의존성을 갖는 케이스이므로, Interface 로 바꾼다해도, 복잡한 mock 체계가 필요해진다.
+
+> 도메인 모델은 외부 시스템과의 통신을 책임지지 않아야한다.
+
+2. application Service 계층 도입 
+
+도메인 로직과 프로세스 외부 통신을 분리하기 위해, humble object (controller)로 책임을 옮겨야한다.
+
+> 일반적으로 도메인 클래스는 프로세스 내부 의존성에만 의존해야한다.
+
+[Controller 추가 예제](/code/src/main/kotlin/unittest/ch07/step01/UserController.kt)
+
+위 변경으로 User 객체에서 외부 의존성이 사라졌다. 
+다만, Controller 에서 일부 도메인 코드가 남게 되었다. (User 객체 초기화)
+또한 User 의 이메일 변경 함수에 회사 직원 수를 계산하는 책임이 남아있는데, 이 책임은 다른 곳으로 분리되어야한다.
+
+3. Application Service 복잡도 낮추기 
+
+Controller 는 orchestration 역할만 해야하기에, `User` 생성 로직은 Factory 로 분리해야한다.
+
+```kotlin
+companion object {
+    fun create(userId: Int, arrays: Array<Any?>): User {
+        val email = arrays[0] as? String ?: ""
+        val userType = arrays[1] as? UserType ?: UserType.CUSTOMER
+        return User(userId, email, userType)
+    }
+}
+```
+
+4. 새 Company 클래스 도입 
+
+User 에서 update 된 직원의 수를 반환하는 로직은 어색하다.
+
+> 이는 책임을 잘못 둿다는 신호이다.
+
+때문에, 회사 관련 로직과 데이터를 함께 묶는 Company 클래스를 만들어야한다.
+
+[Company 추가 예제](/code/src/main/kotlin/unittest/ch07/step02/UserFactory.kt)
+
+위처럼 Company 를 분리하면, UserController 는 협력자를 모으는 역할만 주어진다.
+
+`결과`
+
+- 도메인은 외부 의존성과 통신하지 않는다.
+- Application 계층이 외부 의존성과의 통신을 담당한다.
+
+| | 협력자가 거의 없음| 협력자가 많음|
+| - | - | - |
+| 복잡도와 도메인 유의성이 높음 | User / Company 의 함수들 | 없음 |
+| 복잡도와 도메인 유의성이 낮음| Factory 생성자 | UserController의 changeEmail |
+
