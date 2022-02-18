@@ -135,6 +135,29 @@ list2 = list2 + 1
 (주의) 읽기 전용과 가변성은 다른 개념입니다. 
 
 
+#### 여담 
+
+- 단, mutable collection / mutable property 를 모두 사용하는 방식은 최악입니다.
+  - 변경할 수 있는 모든 지점에 동기화를 구현해야하며, 모호성이 발생하여 += 를 사용 할 수 없습니다.
+  - mutable 의 구현체 (plusAssign)를 호출하는지, var 을 바꾸는건지 알 수 없음
+
+Java Collection 을 Kotlin 에 끌어와서 사용 시, 간혹 아래와 같은 에러가 노출됩니다.
+
+```text
+Assignment operators ambiguity. All these functions match.
+```
+
+위에서 말했듯, var + mutable 조화에서 발생하는 에러인데, 이유는 다음과 같습니다.
+
+- java collection 은 kotlin 에서 mutable 로 대응됨
+- java 에 getter / setter 가 있을 경우, var 로 인지됨 / setter 가 없다면 val 로 인지됨
+
+참고 - [java-interoperability](https://www.baeldung.com/kotlin/getters-setters#java-interoperability)
+
+
+
+
+
 
   
 
