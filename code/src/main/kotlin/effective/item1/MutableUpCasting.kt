@@ -14,22 +14,3 @@ class User {
 
 
 }
-
-fun main() {
-    val user = User()
-
-    val map = user.load()
-    map[1] = "me"
-
-    println(user.load())
-
-    val mutableA = user.loadCaseA()
-
-    mutableA[2] = "you"
-    assert(user.load() != mutableA)
-
-    val immutable = user.loadCaseB()
-
-    // not implement
-    // immutable[3] = "we"
-}

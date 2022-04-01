@@ -17,8 +17,3 @@ class MultiThreadExample {
     }
 
 }
-
-fun main() {
-    val runner = MultiThreadExample()
-    runner.run()
-}

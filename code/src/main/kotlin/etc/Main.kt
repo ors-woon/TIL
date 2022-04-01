@@ -2,15 +2,6 @@ package etc
 
 import java.util.*
 
-fun main() {
-    val collection = CollectionTest()
-
-    // error !
-    //collection.rwList += "hello"
-    collection.roList += "hello"
-
-
-}
 
 class PropertiesTest {
     var millis: Long = 0

@@ -1,25 +1,5 @@
 package effective.item1
 
-fun main() {
-    val list = mutableListOf(1, 2, 3)
-    list.add(4)
-
-    println(list)
-
-    val property = PropertyExample()
-
-    // val
-    // print(property.fullName)
-/*
-    println("start")
-    println(property.fizz)
-    println(property.fizz)
-    println(property.bug)
-    println(property.bug)
-*/
-
-}
-
 
 class PropertyExample() {
     var name = "Big Crown"
@@ -35,7 +15,6 @@ class PropertyExample() {
 
     fun calculate(): Int {
         print("Calculating ..")
-
         return 42
     }
 }

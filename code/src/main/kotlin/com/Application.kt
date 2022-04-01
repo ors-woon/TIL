@@ -9,16 +9,8 @@ import org.springframework.web.client.RestTemplate
 open class Application
 
 
-fun hello(){
-
-    val messageConverter = RestTemplate().messageConverters
-    messageConverter += MappingJackson2HttpMessageConverter()
-}
-
-
 
 fun main(args: Array<String>) {
     runApplication<Application>(*args)
 
-    hello()
 }
